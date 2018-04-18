@@ -124,7 +124,7 @@ prompt_pure_preprompt_render() {
 	# Username and machine, if applicable.
 	[[ -n $prompt_pure_username ]] && preprompt_parts+=('$prompt_pure_username')
 	# Execution time.
-	[[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%F{yellow}${prompt_pure_cmd_exec_time}%f')
+	[[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%F{magenta}${prompt_pure_cmd_exec_time}%f')
 
 	## TASSU PATCH
 	preprompt_parts+=('%F{yellow}%*%f')
