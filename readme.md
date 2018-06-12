@@ -81,33 +81,15 @@ prompt pure
 
 ## Options
 
-### `PURE_CMD_MAX_EXEC_TIME`
-
-The max execution time of a process before its run time is shown when it exits. Defaults to `5` seconds.
-
-### `PURE_GIT_PULL`
-
-Set `PURE_GIT_PULL=0` to prevent Pure from checking whether the current Git remote has been updated.
-
-### `PURE_GIT_UNTRACKED_DIRTY`
-
-Set `PURE_GIT_UNTRACKED_DIRTY=0` to not include untracked files in dirtiness check. Only really useful on extremely huge repos like the WebKit repo.
-
-### `PURE_GIT_DELAY_DIRTY_CHECK`
-
-Time in seconds to delay git dirty checking for large repositories (git status takes > 5 seconds). The check is performed asynchronously, this is to save CPU. Defaults to `1800` seconds.
-
-### `PURE_PROMPT_SYMBOL`
-
-Defines the prompt symbol. The default value is `❯`.
-
-### `PURE_GIT_DOWN_ARROW`
-
-Defines the git down arrow symbol. The default value is `⇣`.
-
-### `PURE_GIT_UP_ARROW`
-
-Defines the git up arrow symbol. The default value is `⇡`.
+| Option                           | Description                                                                                    | Default value  |
+| :------------------------------- | :--------------------------------------------------------------------------------------------- | :------------- |
+| **`PURE_CMD_MAX_EXEC_TIME`**     | The max execution time of a process before its run time is shown when it exits.                | `5` seconds    |
+| **`PURE_GIT_PULL=0`**            | Prevents Pure from checking whether the current Git remote has been updated.                   |                |
+| **`PURE_GIT_UNTRACKED_DIRTY=0`** | Do not include untracked files in dirtiness check. Mostly useful on large repos (like WebKit). |                |
+| **`PURE_GIT_DELAY_DIRTY_CHECK`** | Time in seconds to delay git dirty checking when `git status` takes > 5 seconds.               | `1800` seconds |
+| **`PURE_PROMPT_SYMBOL`**         | Defines the prompt symbol.                                                                     | `❯`            |
+| **`PURE_GIT_DOWN_ARROW`**        | Defines the git down arrow symbol.                                                             | `⇣`            |
+| **`PURE_GIT_UP_ARROW`**          | Defines the git up arrow symbol.                                                               | `⇡`            |
 
 ## Example
 
@@ -181,28 +163,20 @@ zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 ```
 
-## FAQ
+### [zplugin](https://github.com/zdharma/zplugin)
 
-### I am stuck in a shell loop in my terminal that asks me to authenticate. What should I do?
+Update your `.zshrc` file with the following two lines (order matters):
 
-[This is a known issue](https://github.com/sindresorhus/pure/issues/76).
-Using `git pull` when you get the username prompt should help you to break the loop by giving you a real prompt for this. **[This has been fixed in git 2.3](https://github.com/sindresorhus/pure/commit/f43ab97e1cf4a276b7a6e33eac055ee16610be15)**
-
-### I am seeing the error `zpty: can't open pseudo terminal: bad file descriptor`.
-
-[This is a known issue](https://github.com/sindresorhus/pure/issues/117). `zsh/zpty` requires either legacy bsd ptys or access to `/dev/ptmx`. Here are some known solutions.
-
-#### Gentoo
-
-```console
-$ sudo sh -c "echo 'SANDBOX_WRITE=\"/dev/ptmx\"' > /etc/sandbox.d/10zsh"
-$ sudo emerge -1 zsh
+```sh
+zplugin ice pick"async.zsh" src"pure.zsh"
+zplugin light sindresorhus/pure
 ```
 
-#### FreeBSD 10.1
+## FAQ
 
-On a default setup, running the command `kldload pty` should do the trick. If you have a custom kernel, you might need to add `device pty` to the configuration file ([example](https://github.com/nbari/freebsd/blob/58646a9c3c4aaabf6f6467ff505f27f09e29dc75/kernels/xen.kernel#L188)).
+There are currently no FAQs.
 
+See [FAQ Archive](https://github.com/sindresorhus/pure/wiki/FAQ-Archive) for previous FAQs.
 
 ## Ports
 
