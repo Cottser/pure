@@ -19,6 +19,7 @@ Most prompts are cluttered, ugly and slow. I wanted something visually pleasing 
 - Command execution time will be displayed if it exceeds the set threshold.
 - Username and host only displayed when in an SSH session.
 - Shows the current path in the title and the [current folder & command](screenshot-title-cmd.png) when a process is running.
+- Support VI-mode indication by reverse prompt symbol (Zsh 5.3+).
 - Makes an excellent starting point for your own custom prompt.
 
 
@@ -41,7 +42,7 @@ That's it. Skip to [Getting started](#getting-started).
   - add it as a submodule, or
   - just download [`pure.zsh`](pure.zsh) and [`async.zsh`](async.zsh)
 
-2. Symlink `pure.zsh` to somewhere in [`$fpath`](http://www.refining-linux.org/archives/46/ZSH-Gem-12-Autoloading-functions/) with the name `prompt_pure_setup`.
+2. Symlink `pure.zsh` to somewhere in [`$fpath`](https://www.refining-linux.org/archives/46-ZSH-Gem-12-Autoloading-functions.html) with the name `prompt_pure_setup`.
 
 3. Symlink `async.zsh` in `$fpath` with the name `async`.
 
@@ -88,6 +89,7 @@ prompt pure
 | **`PURE_GIT_UNTRACKED_DIRTY=0`** | Do not include untracked files in dirtiness check. Mostly useful on large repos (like WebKit). |                |
 | **`PURE_GIT_DELAY_DIRTY_CHECK`** | Time in seconds to delay git dirty checking when `git status` takes > 5 seconds.               | `1800` seconds |
 | **`PURE_PROMPT_SYMBOL`**         | Defines the prompt symbol.                                                                     | `❯`            |
+| **`PURE_PROMPT_VICMD_SYMBOL`**   | Defines the prompt symbol used when the `vicmd` keymap is active (VI-mode).                    | `❮`            |
 | **`PURE_GIT_DOWN_ARROW`**        | Defines the git down arrow symbol.                                                             | `⇣`            |
 | **`PURE_GIT_UP_ARROW`**          | Defines the git up arrow symbol.                                                               | `⇡`            |
 
@@ -121,6 +123,7 @@ To have commands colorized as seen in the screenshot, install [zsh-syntax-highli
 
 1. Set `ZSH_THEME=""` in your `.zshrc` to disable oh-my-zsh themes.
 2. Follow the Pure [Install](#install) instructions.
+3. Do not enable the following (incompatible) plugins: `vi-mode`, `virtualenv`.
 
 **NOTE:** `oh-my-zsh` overrides the prompt so Pure must be activated *after* `source $ZSH/oh-my-zsh.sh`.
 
@@ -191,6 +194,8 @@ See [FAQ Archive](https://github.com/sindresorhus/pure/wiki/FAQ-Archive) for pre
 	- [rafaelrinaldi/pure](https://github.com/rafaelrinaldi/pure) - Support for bare Fish and various framework ([Oh-My-Fish](https://github.com//oh-my-fish/oh-my-fish), [Fisherman](https://github.com//fisherman/fisherman), and [Wahoo](https://github.com//bucaran/wahoo)).
 - **Rust**
 	- [xcambar/purs](https://github.com/xcambar/purs) - Pure-inspired prompt in Rust.
+- **Go**
+	- [talal/mimir](https://github.com/talal/mimir) - Pure-inspired prompt in Go with Kubernetes and OpenStack cloud support. Not intended to have feature parity.
 
 
 ## Team
