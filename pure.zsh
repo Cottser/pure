@@ -325,43 +325,7 @@ prompt_pure_async_git_arrows() {
 	command git rev-list --left-right --count HEAD...@'{u}'
 }
 
-prompt_pure_async_tasks() {
-	setopt localoptions noshwordsplit
-
-	# Initialize the async worker.
-	((!${prompt_pure_async_init:-0})) && {
-		async_start_worker "prompt_pure" -u -n
-		async_register_callback "prompt_pure" prompt_pure_async_callback
-		typeset -g prompt_pure_async_init=1
-	}
-
-	# Update the current working directory of the async worker.
-	async_worker_eval "prompt_pure" builtin cd -q $PWD
-
-	typeset -gA prompt_pure_vcs_info
-
-	local -H MATCH MBEGIN MEND
-	if [[ $PWD != ${prompt_pure_vcs_info[pwd]}* ]]; then
-		# Stop any running async jobs.
-		async_flush_jobs "prompt_pure"
-
-		# Reset Git preprompt variables, switching working tree.
-		unset prompt_pure_git_dirty
-		unset prompt_pure_git_last_dirty_check_timestamp
-		unset prompt_pure_git_arrows
-		unset prompt_pure_git_fetch_pattern
-		prompt_pure_vcs_info[branch]=
-		prompt_pure_vcs_info[top]=
-	fi
-	unset MATCH MBEGIN MEND
-
-	async_job "prompt_pure" prompt_pure_async_vcs_info
-
-	# Only perform tasks inside a Git working tree.
-	[[ -n $prompt_pure_vcs_info[top] ]] || return
-
-	prompt_pure_async_refresh
-}
+prompt_pure_async_tasks() { }
 
 prompt_pure_async_refresh() {
 	setopt localoptions noshwordsplit
